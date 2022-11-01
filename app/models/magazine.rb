@@ -8,17 +8,34 @@ class Magazine
     @category = category
     @@all << self
   end
-  
-  # def magazine_name
-  #   return
-  # end
 
-  # def magazine_category
-  #   return
-  # end
-
-  # def all_magazine
-  #   return
-  # end
+  def articles
+    Article.all.filter{
+      |article| article.magazine == self
+    }
+  end
+  def title_articles
+    self.articles.map{
+      |article| article.title
+    }
+  end
+  def contibutor
+    self.articles.map{
+      |article| article.author
+    }.uniq
+  end
+  def author_contributing
+    self.contibutor.filter{
+      |author| author.articles.count>2
+    }
+  end
+  def self.all
+    @@all
+  end
+  def self.find_name(name:)
+    self.all.find{
+      |magazine| magazine.name == name
+    }
+  end
 end
 
