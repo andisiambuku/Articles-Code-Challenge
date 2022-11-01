@@ -10,15 +10,9 @@ class Article
         @@all << self
     end
 
-    def self.all
+    def all_self
         @@all
     end
-    def article_title
-        return
-    end
-
-    def all_articles
-        return
-    end
+    
 
 end
